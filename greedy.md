@@ -53,7 +53,7 @@ The orignal question can be viewed [here](https://www.hackerearth.com/practice/a
 
 ## When does greedy algorithm fail?
 Greedy algorithm is hort-sighted and only selects the locally optimal solution. This doesn't guarentee that we will get globally optimal soltion. An example can be seen below
-![example](path890.png)
+<img src="path890.png" alt="drawing" width="400" />
 
 
 
