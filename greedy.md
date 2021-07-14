@@ -1,7 +1,7 @@
 # Greedy Algorithm
 Greedy algorithm is any algorithm that uses the approach of finding the locally optimal choice at each stage in problem solving.    
 Greedy algorithm **does not** always result in the optimal solution, we shall see such an example in the later part of this blog.    
-Let us take a look at a problems before moving on to the theory part.    
+Let us take a look at a problem to understand greedy algorithm.    
 
 ## Problem
 > You're given two binary strings $a$ and $b$ of length $n$, your goal is to make them equal. You can perform the following two operations.     
@@ -46,9 +46,15 @@ int main()
     }
   }
       cout<<cost<<'\n';
-
 }
  ```  
+The orignal question can be viewed [here](https://www.hackerearth.com/practice/algorithms/greedy/basics-of-greedy-algorithms/practice-problems/algorithm/string-equalizer-d4a539ba/)    
+
+
+## When does greedy algorithm fail?
+Greedy algorithm is hort-sighted and only selects the locally optimal solution. This doesn't guarentee that we will get globally optimal soltion. An example can be seen below
+![example](path890.png)
+
 
 
 
