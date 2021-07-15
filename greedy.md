@@ -1,7 +1,73 @@
 # Greedy Algorithm
 Greedy algorithm is any algorithm that uses the approach of finding the locally optimal choice at each stage in problem solving.    
 Greedy algorithm **does not** always result in the optimal solution, we shall see such an example in the later part of this blog.    
-Let us take a look at a problem to understand greedy algorithm.    
+Let us take a look at a few problems to understand greedy algorithm.    
+
+## Problem (Fractional Knapsack Problem)
+> You have been blessed with the power to predict the prices of shares of $n$ companies a day later. You want to make maximum profit out of this oppurtunity. You can buy fraction of a share like in mutual funds, but you cannot buy more than one share of any company. Assume that you don't have to share your profit with brocker. You have $x$ rupees to begin with, your goal is to maximise the profit.   
+> ### Input   
+> An integer $t$ representing the number of test cases $(1 \leq t \leq 100)$. The next line contains the number of companies $n$, $(1 \leq n \leq 100)$ and the amount you have $x$, $(1 \leq x 1000)$.. The next line is a sequence of $n$ integers reprsenting the current prices of listed shares.
+> ### Output
+> One single integer denoting the maximum profit. (If the answer is a decimal number truncate it).
+> ### Input
+>> 1   
+>> 4 150   
+>> 60 50 80 100   
+>> 120 40 200 110   
+> ### Output
+>> 181
+> ### Explanation
+> you will buy $1$ share of first company, $1$ for third company, and $0.1$ for fourth company.      
+
+Lets discuss an approach to the problem.   
+We will sort the arrays in descending order of profit ratio, that would be $80 50 100 50$. Notice that we would never buy a share which doesn't result in profit. The code for this problem is given below.
+``` c++
+#include <bits/stdc++.h>
+using namespace std;
+
+struct vals
+{
+  int a;
+  int b;
+};
+typedef struct vals val;
+
+bool cmpfunc(val l1, val l2)
+{
+  return (double)l1.b/l1.a>(double)l2.b/l2.a;
+}
+
+int main()
+{
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+  int t;cin>>t;
+  while(t--)
+  {
+    int n,x; cin>>n>>x;
+    val l[n];
+    for(int i=0;i<n;i++) cin>>l[i].a;
+    for(int i=0;i<n;i++) cin>>l[i].b;
+    sort(l,l+n,cmpfunc);
+    int i=0,profit=0;
+    while(x>=l[i].a && l[i].b-l[i].a>0 && i<n)
+    {
+      profit+=l[i].b-l[i].a;
+      x-=l[i].a;
+      i++;
+    }
+    if(x>0 && i<n && l[i].b-l[i].a>0)
+    {
+      profit+=x*(double)(l[i].b-l[i].a)/l[i].a;
+    }
+    cout<<profit<<'\n';
+  }
+}
+```
+You can read for fractional knasack problem [here](https://www.geeksforgeeks.org/fractional-knapsack-problem/)
+
+Lets take a look at another problem
 
 ## Problem
 > You're given two binary strings $a$ and $b$ of length $n$, your goal is to make them equal. You can perform the following two operations.     
@@ -55,6 +121,9 @@ The orignal question can be viewed [here](https://www.hackerearth.com/practice/a
 Greedy algorithm is hort-sighted and only selects the locally optimal solution. This doesn't guarentee that we will get globally optimal soltion. An example can be seen below   
 
 <img src="path890.png" alt="drawing" width="400" />
+
+Lets say we have to maximise the sum of elements on some branch. The greedy approach is to select the maximum element at each level, which is the red ones in the given example. However, it can be easily observed that this is way worse than the optimal solution. This is why it is important to understand what greedy algorithm does.    
+Greedy algorithm doesn't always produce a solution that is as good as the optimal solution, it is still important because it can help reduce a lot of steps involved.
 
 
 
