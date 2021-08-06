@@ -20,7 +20,7 @@ Let us take a look at a few problems to understand greedy algorithm.
 > you will buy $1$ share of first company, $1$ for third company, and $0.1$ for fourth company.      
 
 Lets discuss an approach to the problem.   
-We will sort the arrays in descending order of profit ratio, that would be $80 50 100 50$. Notice that we would never buy a share which doesn't result in profit. The code for this problem is given below.
+We will sort the arrays in descending order of profit ratio, that would be $80\ 50\ 100\ 50$. Notice that we would never buy a share which doesn't result in profit. The code for this problem is given below.
 ``` c++
 #include <bits/stdc++.h>
 using namespace std;
@@ -171,6 +171,60 @@ Greedy algorithm doesn't always produce a solution that is as good as the optima
 > For fourth test case, Raju cannot work in the beginning because the sixth line doesn't exist as of yet, So first Farhan will write a new line followed by Raju editing 6th line and then adding a new line, followed by Farhan editing the seventh line and so on. It is easy to understand that this is the only possible sequence of operation. 
 
 Let us discuss the approach for solving this problem.
+### explanation goes here
+
+The code for the above problem is given below
+``` c++
+#include<bits/stdc++.h> 
+ 
+using namespace std;   
+#define ld long double
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false); 
+    cin.tie(0);  
+    cout.tie(0);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+      int k,a,b;
+      cin>>k>>a>>b;
+      int aa[a],bb[b];
+      for(int i=0;i<a;i++)cin>>aa[i];
+      for(int i=0;i<b;i++)cin>>bb[i];
+      int i=0,j=0,flag=1;
+      int s[a+b];
+      while(i<a && flag)
+      {
+            if(aa[i]==0){k++;s[i+j]=0;i++;}
+            else if(aa[i]<=k){s[i+j]=aa[i];i++;}
+            else if(j<b)
+            {
+              if(bb[j]==0){k++;s[i+j]=0;j++;}
+              else if(bb[j]<=k){ s[i+j]=bb[j]; j++;}
+              else{flag=0;}
+            }
+            else flag=0;
+      }
+      while(j<b && flag)
+      {
+        if(bb[j]==0){k++; s[i+j]=0; j++;}
+        else if(bb[j]<=k){ s[i+j]=bb[j]; j++;}
+        else{flag=0;}
+      }
+      if(flag)
+      {
+        for(i=0;i<a+b;i++)cout<<s[i]<<' ';
+      }
+      else
+      cout<<"-1";
+      cout<<'\n';
+ 
+ 
+  
+```
 
 
 
