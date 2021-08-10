@@ -130,7 +130,8 @@ Greedy algorithm doesn't always produce a solution that is as good as the optima
 
 
 ## Some content goes here
->Raju and Farhan are two firends, they are working on a program together. Raju spends n minutes working on code, while Farhan spends m minutes working on the code. At any minute only one of them works on the code. The can perform one of the following two operations at in one minute.    
+
+>Raju and Farhan are two friends, they are working on a program together. Raju spends n minutes working on code, while Farhan spends m minutes working on the code. At any minute only one of them works on the code. The can perform one of the following two operations at in one minute.    
 &nbsp; &nbsp; 1. Write a new line of code at the end.    
 &nbsp; &nbsp; 2. modify $x^{th}$ line, given that $x^{th}$ line exists.   
 > There are $k$ lines of code already when they start working.
@@ -171,7 +172,9 @@ Greedy algorithm doesn't always produce a solution that is as good as the optima
 > For fourth test case, Raju cannot work in the beginning because the sixth line doesn't exist as of yet, So first Farhan will write a new line followed by Raju editing 6th line and then adding a new line, followed by Farhan editing the seventh line and so on. It is easy to understand that this is the only possible sequence of operation. 
 
 Let us discuss the approach for solving this problem.
-### explanation goes here
+This problem is rather easy and we just need one rule,   
+*don't update a line which doesn't exist*       
+Start with Raju's work, if at some point we have to update a line that doesn't exist, we will switch to Farhan for one task, if Farhan adds a line then we will repeat the above procedure, else return -1.
 
 The code for the above problem is given below
 ``` c++
@@ -225,6 +228,7 @@ int main()
  
   
 ```
+
 
 
 

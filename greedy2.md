@@ -1,12 +1,12 @@
 # Greedy Algorithm
-Greedy algorithm is any algorithm that uses the approach of finding the locally optimal choice at each stage in problem solving.    
+Greedy algorithm is any algorithm that uses the approach of finding the locally optimal choice at each stage in problem solving, greedy algorithm is mostly used in optimisation problem.    
 Greedy algorithm **does not** always result in the optimal solution, we shall see such an example in the later part of this blog.    
 Let us take a look at a few standard problems to understand greedy algorithm.    
 
 ## Problem (Fractional Knapsack Problem)
 > You have been blessed with the power to predict the prices of shares of $n$ companies a day later. You want to make maximum profit out of this oppurtunity. You can buy fraction of a share like in mutual funds, but you cannot buy more than one share of any company. Assume that you don't have to share your profit with brocker. You have $x$ rupees to begin with, your goal is to maximise the profit.   
 > ### Input   
-> An integer $t$ representing the number of test cases $(1 \leq t \leq 100)$. The next line contains the number of companies $n$, $(1 \leq n \leq 100)$ and the amount you have $x$, $(1 \leq x 1000)$.. The next line is a sequence of $n$ integers reprsenting the current prices of listed shares.
+> An integer $t$ representing the number of test cases $(1 \leq t \leq 100)$. The next line contains the number of companies $n$, $(1 \leq n \leq 100)$ and the amount you have $x$, $(1 \leq x \leq 1000)$.. The next line is a sequence of $n$ integers reprsenting the current prices of listed shares.
 > ### Output
 > One single integer denoting the maximum profit. (If the answer is a decimal number truncate it).
 > ### Input
@@ -128,7 +128,49 @@ int main()
     while(booked[j] && j>-1)j--;
     if(j!=-1){profit+=data[i].profit; booked[j]=true;}
   }
-  
+
   cout<<profit<<'\n';
 }
 ```
+
+## Activity Selection Problem
+> You have enrolled in several courses without looking the time clash between the courses, the add-drop period is over, so now you want to attend the maximum number of lectures. You goal is to determine how many lectures you can attend.
+> ### Input
+> An integer $n$ representing the number of courses, followed by a line containing $n$, $(n \leq 10)$ integers representing the starting time for each course. The next line contains $n$ integers representing the ending time of each lecture. Apparently, the lectures aren't the usual $1$ hr or $1.5$ hr ones. Assume the any required calculation doesn't exceed $10^6$
+> ### Output
+> A single integer representing the maximum number of lectures you can attend. Please note that you have to attend maximum number of lectures, they need not be longer ones.
+> ### Input
+>> 5   
+>> 10 15 30 90 0   
+>> 20 30 70 110 25
+> ### Output
+>> 3
+
+### Solution
+There may be a few intutions regarding the greedy approach like selecting the lecture that begins first, or may be ends first, or is for least duration. The greedy solution is actually the one in which we are ordering the lectures end time.   
+Here, it would be 
+> 20 25 30 70 110
+
+So we will select the lecture that ends at 20, then we will try selecting the next feasible lecture, we can't select the lecture that ends at 25 because it clashes with the first lecture that we selected, we cannot select the lecture that ends at 30 for same reason. We would then select the lectures that ends at 70 and 110. We were able to select 3 lectures. This is a greedy solution, but it is worth noting that there are other solutions which are as good as greedy solution here.   
+Proving that the greedy solution is as good as optimal solution is important because there are multiple greedy techniques and not all would be optimal. Since, greedy techniques are mostly intution based, understanding the mathematics behind it becomes important.
+
+## Exchange Arguments
+This is a method which comes especially useful while trying to prove greedy algorithms.       
+We have two sets of solutions: one the optimal set and another the greedy set. On the first point of difference, we try to reason that the greedy solution is at least as good or _better_ than the optimal solution. Hence, eliminating that difference, won’t make any difference.       
+We continue this process till the end until the optimal solution matches the greedy solution.  
+Consider the following
+
+<img src="Exchange.png" alt="drawing" />
+ 
+Assume the optimal solution and greedy solution are same till the term $x_{j-1}$, later since $g_j$ is the lowest feasible end time, it has to be $\leq x_j$. Further, it can be seen that similar inequality is applicable for all subsequent terms. If there are $k$ lectures in optimal solution, we get $x_{k-1} \leq g_{k-1}$, Therefore, there are equal or more choices available for last lecture in greedy solution. Note that since greedy solution cannot be better than optimal solution, greedy solution will also have $k$ lectures.
+
+## When does greedy algorithm fail?
+Greedy algorithm is hort-sighted and only selects the locally optimal solution. This doesn't guarentee that we will get globally optimal soltion. An example can be seen below   
+
+<img src="path890.png" alt="drawing" width="400"  />
+
+Lets say we have to maximise the sum of elements on some branch. The greedy approach is to select the maximum element at each level, which is the red ones in the given example. However, it can be easily observed that this is way worse than the optimal solution. This is why it is important to understand what greedy algorithm does.    
+Greedy algorithm doesn't always produce a solution that is as good as the optimal solution, it is still important because it can help reduce a lot of steps involved.
+
+Here is one easy greedy algorithm problem
+
