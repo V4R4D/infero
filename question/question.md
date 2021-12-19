@@ -11,5 +11,5 @@ You have to output $n$ integers separated by a space, the order of completing th
 2 3 7 120 8   
 4 6 10 12 4  
 ### Output
-> 0 1 2 4 3
+> 3 4 2 0 1
 
